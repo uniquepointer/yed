@@ -1,9 +1,9 @@
 LOC = $(HOME)/.local
 CONF = $(HOME)/.config/yed
 
-complete : install plugin
+complete : install plugin userconf/yedrc
 
-userconf/yedrc :
+userconf :
 	@test -d ./userconf || mkdir ./userconf
 	@test -f ./userconf/yedrc || cp  ./mpyconf/yedrc ./userconf/yedrc
 	@test -f ./userconf/ypm_list || cp  ./mpyconf/ypm_list ./userconf/ypm_list
@@ -24,4 +24,4 @@ sysinstall :
 	
 all : $(BUILDDIR)/$(BIN)
 
-.PHONY : install sysinstall
+.PHONY : install sysinstall complete userconf plugin
