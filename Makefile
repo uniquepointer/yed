@@ -17,9 +17,11 @@ userconf :
 	@test -d ./userconf/plugins || mkdir -p ./userconf/plugins/lang/syntax
 	@test -f ./userconf/yedrc || cp  ./mpyconf/yedrc ./userconf/yedrc
 	@test -f ./userconf/ypm_list || cp  ./mpyconf/ypm_list ./userconf/ypm_list
+	@test -f ./userconf/init.c || cp ./mpyconf/init.c ./userconf/init.c
 	@test -d ./userconf/man/man7 || mkdir -p ./userconf/man/man7
 	@test -f $(CONF)/yedrc || cp  ./userconf/yedrc $(CONF)/yedrc
 	@test -f $(CONF)/ypm_list || cp  ./userconf/ypm_list $(CONF)/ypm_listp
+	@test -f $(CONF)init.c || cp ./userconf/init.c $(CONF)/init.c
 
 install :
 	@test -d $(LOC) || mkdir $(LOC)
