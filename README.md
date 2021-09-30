@@ -1,16 +1,18 @@
-# yed (Your Editor)
+# yed (Your Editor) AIO Edition
 
 Check out our web page for more info!
 [your-editor.org](https://your-editor.org)
 
 # TL;DR
-**A fast, fully customizable text-mode editor with zero dependencies.**
+**Yed but with my super defaults.**
 ```
-git clone https://github.com/kammerdienerb/yed && cd yed
-./install.sh -p ./test
-test/yed
+git clone https://git.sr.ht/~uniquepointer/yed && cd yed
+make
 ```
+Running ```make``` will put it on your .local/bin, so if you want a specific place youc an do ```make LOC=/your/full/path/here```
 
+If you got your own config just make a folder inside this fork called ```userconf``` and copy your ```yedrc``` and ```ypm_list``` and you can carry it with you.
+Once you are done installing and run yed, you can just run ```ypm-update```, you don't need an internet connection to compile and load your plugins!
 ![yed](screenshots/1.png)
 
 # Introduction
