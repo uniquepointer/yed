@@ -17,3 +17,4 @@ perf.data
 tags
 .rgignore
 plugins
+.yed_*

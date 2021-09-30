@@ -1,19 +1,25 @@
 LOC = $(HOME)/.local
 CONF = $(HOME)/.config/yed
 
-complete : install plugin userconf/yedrc
+complete : install plugin userconf
+
+plugin : userconf
+	./updateplugs.sh 2> /dev/null
+	@test -d $(CONF)/mpy || mkdir $(CONF)/mpy
+	@test -d $(CONF)/mpy/mpy_plugins || cp -r ./mpy $(CONF)/mpy/mpy_plugins
+	@test -d $(CONF)/mpy/plugins || mkdir $(CONF)/mpy/plugins
+	@test -d $(CONF)/mpy/man || mkdir $(CONF)/mpy/man
+	cp -r ./userconf/plugins/* $(CONF)/mpy/plugins/.
+	@test -d ./userconf/man/man7 || mkdir -p ./userconf/man/ && cp -r ./userconf/man/man7 $(CONF)/mpy/man/.
 
 userconf :
 	@test -d ./userconf || mkdir ./userconf
+	@test -d ./userconf/plugins || mkdir -p ./userconf/plugins/lang/syntax
 	@test -f ./userconf/yedrc || cp  ./mpyconf/yedrc ./userconf/yedrc
 	@test -f ./userconf/ypm_list || cp  ./mpyconf/ypm_list ./userconf/ypm_list
+	@test -d ./userconf/man/man7 || mkdir -p ./userconf/man/man7
 	@test -f $(CONF)/yedrc || cp  ./userconf/yedrc $(CONF)/yedrc
-	@test -f $(CONF)/ypm_list || cp  ./userconf/ypm_list $(CONF)/ypm_list
-
-plugin : 
-	@test -d $(CONF)/ypm || mkdir $(CONF)/ypm
-	@test -d $(CONF)/ypm/ypm_plugins || cp -r ./mpy $(CONF)/ypm/ypm_plugins
-	
+	@test -f $(CONF)/ypm_list || cp  ./userconf/ypm_list $(CONF)/ypm_listp
 
 install :
 	@test -d $(LOC) || mkdir $(LOC)
