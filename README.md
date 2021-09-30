@@ -2,6 +2,7 @@
 
 # TL;DR
 **Yed but with my super defaults.**
+I made this mostly for myself but if there is anything I can do to make it easier for others send me an email or open an issue on github.
 ```
 git clone https://git.sr.ht/~uniquepointer/yed && cd yed
 make
