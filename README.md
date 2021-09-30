@@ -14,5 +14,6 @@ Once you are done installing and run yed, you can just run ```ypm-update```, you
 ## Go checkout Yed
 ![yed](screenshots/2.png)
 
-[your-editor.org](https://your-editor.org)
-[yed](https://github.com/kammerdienerb/yed)
+[Website](https://your-editor.org)
+
+[Official repo](https://github.com/kammerdienerb/yed)
