@@ -4,7 +4,7 @@
 **Yed but with my super defaults.**
 I made this mostly for myself but if there is anything I can do to make it easier for others send me an email or open an issue on github.
 ```
-git clone https://git.sr.ht/~uniquepointer/yed && cd yed
+git clone https://git.sr.ht/~uniquepointer/yed-aio && cd yed
 make
 ```
 Running ```make``` will put it on your .local/bin, so if you want a specific place youc an do ```make LOC=/your/full/path/here```
