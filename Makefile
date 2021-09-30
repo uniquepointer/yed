@@ -4,7 +4,7 @@ CONF = $(HOME)/.config/yed
 complete : install plugin userconf
 
 plugin : userconf
-	./updateplugs.sh 2> /dev/null
+	./updateplugs.sh 2> ./updatelog
 	@test -d $(CONF)/mpy || mkdir $(CONF)/mpy
 	@test -d $(CONF)/mpy/mpy_plugins || cp -r ./mpy $(CONF)/mpy/mpy_plugins
 	@test -d $(CONF)/mpy/plugins || mkdir $(CONF)/mpy/plugins
