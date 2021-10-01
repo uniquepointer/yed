@@ -24,14 +24,6 @@ int yed_plugin_boot(yed_plugin *self) {
     /* This makes the recompile_init function available as a command. */
     yed_plugin_set_command(self, "recompile-init", recompile_init);
 
-    YEXE("plugin-load", "yedrc");
-
-    path = get_config_item_path("yedrc");
-
-    YEXE("yedrc-load", path);
-
-    free(path);
-
     char fake_ypm[4096];
     fake_ypm[0] = '\0';
     char real_ypm[4096];
@@ -50,8 +42,17 @@ int yed_plugin_boot(yed_plugin *self) {
     }
     else
     {
-        YEXE("plugins-add-dir", "/home/wildptr/.config/yed/mpy/plugins");
+        YEXE("plugins-add-dir", "~/.config/yed/mpy/plugins");
     }
+
+    YEXE("plugin-load", "yedrc");
+
+    path = get_config_item_path("yedrc");
+
+    YEXE("yedrc-load", path);
+
+    free(path);
+
     return 0;
 }
 
