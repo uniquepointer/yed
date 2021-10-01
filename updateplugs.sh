@@ -50,11 +50,11 @@ git subtree pull --prefix mpy/lang/syntax/yedrc https://github.com/kammerdienerb
 git subtree pull --prefix mpy/lang/tools/latex https://github.com/kammerdienerb/yed-lang-tools-latex master --squash
 
 printf 'Copying plugin man pages\n';
-printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../mpyconf/man/man7/.' _;
+printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../userconf/man/man7/.' _;
 printf 'Copying lang man pages\n';
-printf '%s\0' mpy/lang/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../../mpyconf/man/man7/.' _;
+printf '%s\0' mpy/lang/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../../userconf/man/man7/.' _;
 printf 'Copying lang/syntax man pages\n';
-printf '%s\0' mpy/lang/syntax/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../../../mpyconf/man/man7/.' _;
+printf '%s\0' mpy/lang/syntax/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../../../userconf/man/man7/.' _;
 
 printf 'Building plugins\n';
 printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp *.so ../../userconf/plugins/.' _
