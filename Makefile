@@ -25,7 +25,7 @@ userconf :
 	@test -d ./userconf/man/man7 || mkdir -p ./userconf/man/man7
 	@test -f $(CONF)/yedrc || cp  ./userconf/yedrc $(CONF)/yedrc
 	@test -f $(CONF)/ypm_list || cp  ./userconf/ypm_list $(CONF)/ypm_listp
-	@test -f $(CONF)init.c || cp ./userconf/init.c $(CONF)/init.c
+	@test -f $(CONF)/init.c || cp ./userconf/init.c $(CONF)/init.c
 
 update :
 	./updateplugs.sh 2> ./updatelog
