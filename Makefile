@@ -27,6 +27,9 @@ userconf :
 	@test -f $(CONF)/ypm_list || cp  ./userconf/ypm_list $(CONF)/ypm_listp
 	@test -f $(CONF)init.c || cp ./userconf/init.c $(CONF)/init.c
 
+update :
+	./updateplugs.sh 2> ./updatelog
+
 install :
 	@test -d $(LOC) || mkdir $(LOC)
 	./install.sh -p $(LOC)
@@ -36,4 +39,4 @@ sysinstall :
 	
 all : $(BUILDDIR)/$(BIN)
 
-.PHONY : install sysinstall complete userconf plugin
+.PHONY : install sysinstall complete userconf plugin ypm update
