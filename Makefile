@@ -29,6 +29,8 @@ userconf :
 
 update :
 	./updateplugs.sh 2> ./updatelog
+	cp -r ./userconf/plugins/* $(CONF)/mpy/plugins/.
+	@test -d ./userconf/man/man7 || mkdir -p ./userconf/man/ && cp -r ./userconf/man/man7 $(CONF)/mpy/man/.
 
 install :
 	@test -d $(LOC) || mkdir $(LOC)
