@@ -3,6 +3,10 @@ CONF = $(HOME)/.config/yed
 
 complete : install plugin userconf
 
+ypm :
+	@test -d $(CONF)/mpy || rm -r $(CONF)/mpy
+	@test -d $(CONF)/ypm || mkdir $(CONF)/ypm
+
 plugin : userconf
 	./updateplugs.sh 2> ./updatelog
 	@test -d $(CONF)/mpy || mkdir $(CONF)/mpy

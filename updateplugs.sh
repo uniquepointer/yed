@@ -65,4 +65,4 @@ printf '%s\0' mpy/lang/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp
 printf 'Building syntax plugins\n';
 printf '%s\0' mpy/lang/syntax/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp *.so ../../../../userconf/plugins/lang/syntax/.' _
 
-printf 'Final touched...';
+printf 'Final touches...\n';
