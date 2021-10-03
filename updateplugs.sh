@@ -49,6 +49,7 @@ git subtree pull --prefix mpy/lang/syntax/sh https://github.com/kammerdienerb/ye
 git subtree pull --prefix mpy/lang/syntax/yedrc https://github.com/kammerdienerb/yed-lang-syntax-yedrc master --squash
 git subtree pull --prefix mpy/lang/tools/latex https://github.com/kammerdienerb/yed-lang-tools-latex master --squash
 git subtree pull --prefix mpy/drill https://github.com/uniquepointer/yed-drill master --squash
+git subtree add --prefix mpy/styles/midnight https://github.com/uniquepointer/yed-style-midnight main --squash
 
 printf 'Copying plugin man pages\n';
 printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../userconf/man/man7/.' _;
@@ -62,6 +63,9 @@ printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp *.so
 
 printf 'Building lang plugins\n';
 printf '%s\0' mpy/lang/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp *.so ../../../userconf/plugins/lang/.' _
+
+printf 'Building style plugins\n'
+printf '%s\0' mpy/styles/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp *.so ../../../userconf/plugins/styles/.' _
 
 printf 'Building syntax plugins\n';
 printf '%s\0' mpy/lang/syntax/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && ./build.sh && cp *.so ../../../../userconf/plugins/lang/syntax/.' _
