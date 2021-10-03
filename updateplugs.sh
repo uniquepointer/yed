@@ -47,6 +47,8 @@ git subtree pull --prefix mpy/lang/syntax/latex https://github.com/kammerdienerb
 git subtree pull --prefix mpy/lang/syntax/python https://github.com/kammerdienerb/yed-lang-syntax-python master --squash
 git subtree pull --prefix mpy/lang/syntax/sh https://github.com/kammerdienerb/yed-lang-syntax-sh master --squash
 git subtree pull --prefix mpy/lang/syntax/yedrc https://github.com/kammerdienerb/yed-lang-syntax-yedrc master --squash
+git subtree pull --prefix mpy/lang/go https://github.com/uniquepointer/yed-lang-go main --squash
+git subtree pull --prefix mpy/lang/syntax/go https://github.com/uniquepointer/yed-lang-syntax-go main --squash
 git subtree pull --prefix mpy/lang/tools/latex https://github.com/kammerdienerb/yed-lang-tools-latex master --squash
 git subtree pull --prefix mpy/drill https://github.com/uniquepointer/yed-drill master --squash
 git subtree add --prefix mpy/styles/midnight https://github.com/uniquepointer/yed-style-midnight main --squash
