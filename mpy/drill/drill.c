@@ -550,34 +550,40 @@ int drill_nav_common(int key, char *key_str) {
         case ARROW_LEFT:
             if (!drill_visual_mode_bool) YEXE("select-off");
             YEXE("cursor-left");
+            drill_X_select = 0;
             break;
 
         case 'j':
         case ARROW_DOWN:
             if (!drill_visual_mode_bool) YEXE("select-off");
             YEXE("cursor-down");
+            drill_X_select = 0;
             break;
 
         case 'k':
         case ARROW_UP:
             if (!drill_visual_mode_bool) YEXE("select-off");
             YEXE("cursor-up");
+            drill_X_select = 0;
             break;
 
         case 'l':
         case ARROW_RIGHT:
             if (!drill_visual_mode_bool) YEXE("select-off");
             YEXE("cursor-right");
+            drill_X_select = 0;
             break;
 
         case PAGE_UP:
             if (!drill_visual_mode_bool) YEXE("select-off");
             YEXE("cursor-page-up");
+            drill_X_select = 0;
             break;
 
         case PAGE_DOWN:
             if (!drill_visual_mode_bool) YEXE("select-off");
             YEXE("cursor-page-down");
+            drill_X_select = 0;
             break;
 
         case 'w':
@@ -590,7 +596,13 @@ int drill_nav_common(int key, char *key_str) {
             break;
 
         case 'q':
+            if (!drill_visual_mode_bool){
+            YEXE("select-off");
+            YEXE("select");
+            }
             YEXE("cursor-prev-word");
+            drill_W_select = 1;
+
             break;
 
         case '0':
@@ -677,13 +689,14 @@ void drill_normal(int key, char *key_str) {
 
         case 'y':
             YEXE("yank-selection", "1");
+            drill_X_select = 0;
             break;
 
         case 'v':
             if (drill_visual_mode_bool) {
                 YEXE("select-off");
             }
-            if (!drill_W_select && !drill_visual_mode_bool) {
+            if (!drill_W_select && !drill_visual_mode_bool && !drill_X_select) {
                 YEXE("select");
             }
             drill_visual_mode_bool = 1;
@@ -692,9 +705,10 @@ void drill_normal(int key, char *key_str) {
             break;
         case 'x':
             YEXE("select-lines");
+            drill_X_select = 1;
             break;
         case 'X':
-            if (!drill_X_select) YEXE("select-lines");
+            if (!drill_X_select && !drill_visual_mode_bool) YEXE("select-lines");
             drill_X_select = 1;
             YEXE("cursor-down");
             break;
