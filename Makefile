@@ -10,7 +10,8 @@ ypm :
 plugin : userconf
 	./updateplugs.sh 2> ./updatelog
 	@test -d $(CONF)/mpy || mkdir $(CONF)/mpy
-	@test -d $(CONF)/mpy/mpy_plugins || cp -r ./mpy $(CONF)/mpy/mpy_plugins
+	@test -d $(CONF)/mpy/mpy_plugins || mkdir -p $(CONF)/mpy/mpy_plugins
+	cp -r ./mpy/* $(CONF)/mpy/mpy_plugins
 	@test -d $(CONF)/mpy/plugins || mkdir $(CONF)/mpy/plugins
 	@test -d $(CONF)/mpy/man || mkdir $(CONF)/mpy/man
 	cp -r ./userconf/plugins/* $(CONF)/mpy/plugins/.
