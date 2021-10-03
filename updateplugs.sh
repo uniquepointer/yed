@@ -51,7 +51,7 @@ git subtree pull --prefix mpy/lang/go https://github.com/uniquepointer/yed-lang-
 git subtree pull --prefix mpy/lang/syntax/go https://github.com/uniquepointer/yed-lang-syntax-go main --squash
 git subtree pull --prefix mpy/lang/tools/latex https://github.com/kammerdienerb/yed-lang-tools-latex master --squash
 git subtree pull --prefix mpy/drill https://github.com/uniquepointer/yed-drill master --squash
-git subtree add --prefix mpy/styles/midnight https://github.com/uniquepointer/yed-style-midnight main --squash
+git subtree pull --prefix mpy/styles/midnight https://github.com/uniquepointer/yed-style-midnight main --squash
 
 printf 'Copying plugin man pages\n';
 printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../userconf/man/man7/.' _;
