@@ -23,9 +23,9 @@
 
 #define TEAL               (ALT(RGB_32_hex(23d4ac), 37))
 
-#define PURPLE             (ALT(RGB_32_hex(3a208a), 99))
+#define PURPLE             (ALT(RGB_32_hex(7d52ff), 99))
 
-#define WEAKPURPLE         (ALT(RGB_32_hex(a884f3), 98))
+#define WEAKPURPLE         (ALT(RGB_32_hex(806aad), 98))
 
 #define BEAUTIFULBLUE      (ALT(RGB_32_hex(5ac8fa), 75))
 
@@ -40,6 +40,8 @@
 #define base0D             (ALT(RGB_32_hex(83a598), 109))
 
 #define base0E             (ALT(RGB_32_hex(d3869b), 175))
+
+#define BLUESELEC          (ALT(RGB_32_hex(205783), 33))
 
 #define DARK               (ALT(RGB_32_hex(000111), 239))
 
@@ -82,7 +84,7 @@ PACKABLE_STYLE(midnight)
 
     s.selection.flags     = attr_kind;
     s.selection.fg        = WHITE;
-    s.selection.bg        = DARK;
+    s.selection.bg        = BLUESELEC;
 
     s.attention.flags     = attr_kind | ATTR_BOLD;
     s.attention.fg        = RED;
