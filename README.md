@@ -1,20 +1,10 @@
-# yed (Your Editor) AIO Edition
+# Drill
+A kakoune roleplayer for yed, might be very rough now, and not have your favourite feature, but thats ok.
 
-# TL;DR
-**Yed but with my super defaults.**
-I made this mostly for myself but if there is anything I can do to make it easier for others send me an email or open an issue on github.
-```
-git clone https://git.sr.ht/~uniquepointer/yed-aio && cd yed
-make
-```
-Running ```make``` will put it on your .local/bin, so if you want a specific place youc an do ```make LOC=/your/full/path/here```
+### Deviations from vimish
+* Only 2 modes
+    * A secret Visual mode, but don't tell kakoune users
+    ![20211001_22h01m11s_grim](https://user-images.githubusercontent.com/71751817/135701850-bddce287-dd75-4bf9-8a95-dbc4c876c4a3.png)
 
-If you got your own config just make a folder inside this fork called ```userconf``` and copy your ```yedrc``` and ```ypm_list``` and you can carry it with you.
-Once you are done installing and run yed, you can just run ```ypm-update```, you don't need an internet connection to compile and load your plugins!
-
-## Go checkout Yed
-![yed](screenshots/2.png)
-
-[Website](https://your-editor.org)
-
-[Official repo](https://github.com/kammerdienerb/yed)
+* Search is also on 's' in normal mode until we get the proper select command, wonder whos responsible for that
+* I can't think of anything else.
