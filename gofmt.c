@@ -1,7 +1,7 @@
 #include <yed/plugin.h>
 
 void
-buffer_go_fmt(yed_event* event);
+buffer_go_fmt();
 void
 ev_buffer_go_fmt(yed_event* event);
 
@@ -18,7 +18,7 @@ yed_plugin_boot(yed_plugin *self)
     gofmt.kind = EVENT_BUFFER_PRE_WRITE;
     gofmt.fn   = ev_buffer_go_fmt;
 
-    if (yed_var_truthy("gofmt-auto"))
+    if (yed_var_is_truthy("gofmt-auto"))
     {
         yed_plugin_add_event_handler(self, gofmt);
     }
@@ -108,14 +108,14 @@ go_fmt(void)
 void
 ev_buffer_go_fmt(yed_event* event)
 {
-    fmtFile();
+    go_fmt();
     YEXE("buffer-reload");
     yed_cprint("Buffer reloaded");
 }
 void
 buffer_go_fmt()
 {
-    fmtFile();
+    go_fmt();
     YEXE("buffer-reload");
     yed_cprint("Buffer reloaded");
 }
