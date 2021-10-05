@@ -1,4 +1,4 @@
-CFLAGS += $(shell yed --print-cflags)
+CFLAGS += $(shell yed --print-cflags) -Wall -Wextra
 CFLAGS += $(shell yed --print-ldflags)
 install:
 	gcc $(CFLAGS) gofmt.c -o gofmt.so
