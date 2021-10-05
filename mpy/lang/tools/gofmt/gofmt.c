@@ -18,7 +18,12 @@ yed_plugin_boot(yed_plugin* self)
     gofmt.kind = EVENT_BUFFER_PRE_WRITE;
     gofmt.fn   = ev_buffer_go_fmt;
 
-    if (!!(yed_var_is_truthy("gofmt-auto")))
+    if (yed_get_var("gofmt-auto") == NULL)
+    {
+        yed_set_var("gofmt-auto", "yes");
+    }
+
+    if (yed_var_is_truthy("gofmt-auto"))
     {
         yed_plugin_add_event_handler(self, gofmt);
     }
