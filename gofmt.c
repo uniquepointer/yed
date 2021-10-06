@@ -1,7 +1,7 @@
 #include <yed/plugin.h>
 
 void
-buffer_go_fmt(void);
+buffer_go_fmt(int n_args, char **args);
 void
 ev_buffer_go_fmt(yed_event* event);
 
@@ -13,20 +13,19 @@ yed_plugin_boot(yed_plugin* self)
     /*Check for plug version*/
     YED_PLUG_VERSION_CHECK();
 
-    yed_event_handler goFmt;
-    yed_event_handler buffReload;
+    yed_event_handler eh_go_format;
 
-    goFmt.kind = EVENT_BUFFER_POST_WRITE;
-    goFmt.fn   = ev_buffer_go_fmt;
+    eh_go_format.kind = EVENT_BUFFER_POST_WRITE;
+    eh_go_format.fn   = ev_buffer_go_fmt;
 
-    if (yed_get_var("go-fmt-auto") == NULL)
+    if (yed_get_var("gofmt-auto") == NULL)
     {
-        yed_set_var("go-fmt-auto", "yes");
+        yed_set_var("gofmt-auto", "yes");
     }
 
-    if (yed_var_is_truthy("go-fmt-auto"))
+    if (yed_var_is_truthy("gofmt-auto"))
     {
-        yed_plugin_add_event_handler(self, goFmt);
+        yed_plugin_add_event_handler(self, eh_go_format);
     }
 
     yed_plugin_set_command(self, "go-fmt", buffer_go_fmt);
@@ -55,27 +54,25 @@ buff_path_for_fmt()
 
     buffer = frame->buffer;
 
-    if (buffer->name)
+    if (buffer->name && buffer->ft == yed_get_ft("Golang"))
     {
         strcpy(bufferLoc, buffer->path);
     }
     else
     {
-        yed_cerr("buffer has no path");
+        yed_cerr("buffer has no path or it's not a Golang file'");
     }
 }
 
 int
-go_fmt(void)
+_go_fmt(void)
 {
     int        output_len, status;
     char       cmd_buff[1024];
 
     buff_path_for_fmt();
     snprintf(cmd_buff, sizeof(cmd_buff), "gofmt -w %s &> /tmp/golog", bufferLoc);
-    LOG_CMD_ENTER("gofmt");
-    yed_cerr("%s", yed_run_subproc(cmd_buff, &output_len, &status));
-    LOG_EXIT();
+    yed_run_subproc(cmd_buff, &output_len, &status);
 
     if (status != 0)
     {
@@ -84,6 +81,7 @@ go_fmt(void)
     }
     else
     {
+
         yed_cprint("Formatted buffer\n");
         return 0;
     }
@@ -109,15 +107,16 @@ ev_buffer_go_fmt(yed_event* event)
 
     if (frame->buffer->ft == yed_get_ft("Golang"))
     {
-        if(go_fmt() == 0)
+        if(_go_fmt() == 0)
         {
             YEXE("buffer-reload");
+            YEXE("redraw");
             yed_cprint("Reloaded buffer\n");
         }
     }
 }
 void
-buffer_go_fmt()
+buffer_go_fmt(int n_args, char **args)
 {
     yed_frame* frame;
 
@@ -137,9 +136,11 @@ buffer_go_fmt()
 
     if (frame->buffer->ft == yed_get_ft("Golang"))
     {
-        if(go_fmt() == 0)
+        if(_go_fmt() == 0)
         {
+            YEXE("write-buffer");
             YEXE("buffer-reload");
+            YEXE("redraw");
             yed_cprint("Reloaded buffer\n");
         }
     }
