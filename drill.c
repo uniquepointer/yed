@@ -606,7 +606,7 @@ int drill_nav_common(int key, char *key_str) {
 
             break;
 
-        case '0':
+        case '^':
         case HOME_KEY:
             YEXE("cursor-line-begin");
             break;
@@ -622,14 +622,6 @@ int drill_nav_common(int key, char *key_str) {
 
         case '}':
             YEXE("cursor-next-paragraph");
-            break;
-
-        case 'g':
-            YEXE("cursor-buffer-begin");
-            break;
-
-        case 'G':
-            YEXE("cursor-buffer-end");
             break;
 
         case '/':
@@ -705,12 +697,23 @@ void drill_normal(int key, char *key_str) {
             drill_X_select = 0;
             break;
         case 'x':
-            YEXE("select-lines");
+            if (drill_X_select)
+            {
+                YEXE("select-lines");
+                YEXE("cursor-down");
+                YEXE("select-lines");
+            }
+            else
+            {
+                YEXE("select-lines");
+            }
             drill_X_select = 1;
+            YEXE("cursor-line-end");
             break;
         case 'X':
             if (!drill_X_select && !drill_visual_mode_bool) YEXE("select-lines");
             drill_X_select = 1;
+            YEXE("cursor-line-end");
             YEXE("cursor-down");
             break;
         case 's':
