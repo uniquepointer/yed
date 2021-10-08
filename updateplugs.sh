@@ -54,6 +54,7 @@ git subtree pull --prefix mpy/lang/tools/gofmt https://github.com/uniquepointer/
 git subtree pull --prefix mpy/drill https://github.com/uniquepointer/yed-drill master --squash
 git subtree pull --prefix mpy/styles/midnight https://github.com/uniquepointer/yed-style-midnight main --squash
 git subtree pull --prefix mpy/builder https://github.com/kammerdienerb/yed-builder master --squash
+git subtree pull --prefix mpy/go_menu https://github.com/kammerdienerb/yed-go_menu master --squash
 
 printf 'Copying plugin man pages\n';
 printf '%s\0' mpy/*/ | xargs -0 -L1 bash -c 'cd -- "$1" && cp *.7 ../../userconf/man/man7/.' _;
