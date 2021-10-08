@@ -5,7 +5,7 @@
 #define base00             (ALT(RGB_32_hex(171831), 16))
 #define base00_but_lighter (ALT(RGB_32_hex(31324b), 235))
 
-#define ORANGE             (ALT(RGB_32_hex(3c3836), 208))
+#define ORANGE             (ALT(RGB_32_hex(f79617), 208))
 
 #define YELLOW             (ALT(RGB_32_hex(ffc24b), 214))
 
