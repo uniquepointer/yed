@@ -26,6 +26,7 @@ userconf :
 	@test -f ./userconf/ypm_list || cp  ./mpyconf/ypm_list ./userconf/ypm_list
 	@test -f ./userconf/init.c || cp ./mpyconf/init.c ./userconf/init.c
 	@test -d ./userconf/man/man7 || mkdir -p ./userconf/man/man7
+    @test -d $(CONF)/ || mkdir -p $(CONF)/
 	@test -f $(CONF)/yedrc || cp  ./userconf/yedrc $(CONF)/yedrc
 	@test -f $(CONF)/ypm_list || cp  ./userconf/ypm_list $(CONF)/ypm_listp
 	@test -f $(CONF)/init.c || cp ./userconf/init.c $(CONF)/init.c
