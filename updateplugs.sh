@@ -56,3 +56,4 @@ git subtree pull --prefix mpy/styles/midnight https://github.com/uniquepointer/y
 git subtree pull --prefix mpy/builder https://github.com/kammerdienerb/yed-builder master --squash
 git subtree pull --prefix mpy/go_menu https://github.com/kammerdienerb/yed-go_menu master --squash
 git subtree pull --prefix mpy/styles/crunchy_leaves https://github.com/imml3457/crunchy_leaves master --squash
+git subtree pull --prefix mpy/git_variables https://github.com/JacobMalloy/yed-git_variables  main --squash
