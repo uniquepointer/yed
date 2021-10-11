@@ -57,3 +57,5 @@ git subtree pull --prefix mpy/builder https://github.com/kammerdienerb/yed-build
 git subtree pull --prefix mpy/go_menu https://github.com/kammerdienerb/yed-go_menu master --squash
 git subtree pull --prefix mpy/styles/crunchy_leaves https://github.com/imml3457/crunchy_leaves master --squash
 git subtree pull --prefix mpy/git_variables https://github.com/JacobMalloy/yed-git_variables  main --squash
+git subtree pull --prefix mpy/lang/zig https://github.com/uniquepointer/yed-lang-zig  main --squash
+git subtree pull --prefix mpy/lang/syntax/zig https://github.com/uniquepointer/yed-lang-syntax-zig  main --squash
