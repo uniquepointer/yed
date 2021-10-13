@@ -15,7 +15,6 @@ git subtree pull --prefix mpy/comment https://github.com/kammerdienerb/yed-comme
 git subtree pull --prefix mpy/completer https://github.com/kammerdienerb/yed-completer master --squash;
 git subtree pull --prefix mpy/ctags https://github.com/kammerdienerb/yed-ctags master --squash;
 git subtree pull --prefix mpy/cursor_word_hl https://github.com/kammerdienerb/yed-cursor_word_hl master --squash;
-git subtree pull --prefix mpy/find_bracket https://github.com/mickidymick/find_bracket master --squash;
 git subtree pull --prefix mpy/find_bracket https://github.com/mickidymick/find_bracket main --squash;
 git subtree pull --prefix mpy/find_file https://github.com/kammerdienerb/yed-find_file master --squash;
 git subtree pull --prefix mpy/grep https://github.com/kammerdienerb/yed-grep master --squash;
