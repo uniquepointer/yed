@@ -43,7 +43,9 @@ _buff_path_for_fmt()
         strcmp(ext, "cpp")   ||
         strcmp(ext, "h")     ||
         strcmp(ext, "hpp")   ||
-        strcmp(ext, "hxx"))
+        strcmp(ext, "hxx"))  &&
+        (buffer->ft == yed_get_ft("C") ||
+        buffer->ft == yed_get_ft("C++"))
        )
     {
         memset(bufferLoc, 0, sizeof(bufferLoc));
@@ -60,9 +62,25 @@ a_cmd(int n_args, char **args)
 {
     yed_frame* frame;
     yed_buffer* buffer;
-    frame = ys->active_frame;
-    buffer = frame->buffer;
+    if (!ys->active_frame)
+    {
+        yed_cerr("no active frame");
+        return;
+    }
 
+    frame = ys->active_frame;
+
+    if (!frame->buffer)
+    {
+        yed_cerr("active frame has no buffer");
+        return;
+    }
+
+    buffer = frame->buffer;
+    if (!buffer->name && (buffer->ft != yed_get_ft("C") || buffer->ft != yed_get_ft("C++")))
+    {
+        yed_cerr("Not a C or C++ file.");
+    }
     _buff_path_for_fmt();
     const char* ext = get_path_ext(buffer->path);
     char newpath[512];
