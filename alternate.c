@@ -120,7 +120,7 @@ a_cmd(int n_args, char **args)
     else if (frame->buffer->ft == yed_get_ft("C++") &&
              (strcmp(ext, "cxx") == 0 || strcmp(ext, "hxx") == 0))
     {
-        if (strcmp(ext, "cpp") == 0)
+        if (strcmp(ext, "cxx") == 0)
         {
             newpath[idx - erase] = 'h';
             newpath[idx - (erase - 1)] = 'x';
