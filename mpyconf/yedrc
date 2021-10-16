@@ -1,53 +1,94 @@
-plugin-load 'ypm'
-
-plugin-load 'find_file'
-plugin-load 'find_bracket'
-plugin-load 'grep'
-plugin-load 'hook'
-plugin-load 'indent_c'
-plugin-load 'jump_stack'
-plugin-load 'lang/c'
-plugin-load 'lang/conf'
-plugin-load 'lang/cpp'
-plugin-load 'lang/make'
-plugin-load 'lang/syntax/c'
-plugin-load 'ctags'
-plugin-load 'lang/syntax/cpp'
-plugin-load 'man'
-plugin-load 'lang/yedrc'
-plugin-load 'comment'
-plugin-load 'calc'
-plugin-load 'completer'
-plugin-load 'cursors_word_hl'
-plugin-load 'brace_hl'
-plugin-load 'log_hl'
-plugin-load 'paren_hl'
-plugin-load 'style_use_term_bg'
-plugin-load 'style_pack'
-plugin-load 'style_picker'
-plugin-load 'lang/syntax/conf'
-plugin-load 'lang/syntax/sh'
-plugin-load 'lang/syntax/yedrc'
-plugin-load 'scroll_buffer'
-plugin-load 'shell_run'
-plugin-load 'auto_paren'
-plugin-load 'status_bar_clock'
-plugin-load 'lang/tools/latex'
-plugin-load 'lang/syntax/python'
-plugin-load 'lang/syntax/latex'
-plugin-load 'lang/syntax/jgraph'
-plugin-load 'lang/syntax/glsl'
-plugin-load 'lang/sh'
-plugin-load 'line_numbers'
-plugin-load 'lang/latex'
-plugin-load 'lang/python'
-plugin-load 'lang/jgraph'
-plugin-load 'lang/glsl'
-plugin-load 'autotrim'
-
-plugin-load 'styles/bold-dark'
-style bold-dark
-
-#setting variables
+#My config
+#variables
+set tab-width 4
+#set ctags-flags "-R --exclude=*ccls* *"
+set ctags-auto-show-function-hint "yes"
+set ctags-enable-extra-highlighting "yes"
+set ctags-compl "yes"
+set ctags-additional-paths "~/.local/include"
+set ctags-regen-on-write "yes"
+set completer-sources "word tags"
+set completer-auto "yes
 set cursorline "yes"
-fset command-prompt-string "YED>"
+set command-prompt-string "cool-factoid>"
+set completer-auto "yes"
+set enable-search-cursor-move "no"
+set sys-clip 'xsel'
+set truecolor "yes"
+set find-file-prg 'rg --no-ignore-vcs --files --hidden -g "!.git"'
+set gofmt-auto "yes"
+set nixfmt-auto "yes"
+set clangfmt-auto "yes"
+set auto-paren-skip "yes"
+set auto-dquote-skip "yes"
+set auto-quote-skip "yes"
+set pastebin-fav "paste-rs"
+set git-variables-branch-icon " "
+set status-line-left "%[&code-comment.fg swap &search.fg]  %t%[&code-comment.fg swap &search.fg]  %(drill-mode)  %[&code-comment.fg swap &search.fg] %b%[&code-comment.fg swap &search.fg]  %l:%c  %p%%%[&code-comment.fg]🭬"
+set status-line-center "%[&code-comment.fg]%[&code-comment.fg swap &search.fg] %(git-variables-branch) %[&code-comment.fg]"
+set status-line-right "%[&code-comment.fg]🭮%[&code-comment.fg swap &search.fg]%T"
+
+load-tally
+
+style-term-bg crunchy_leaves
+
+#unbind
+drill-unbind normal "left"
+drill-unbind normal "right"
+drill-unbind normal "up"
+drill-unbind normal "down"
+drill-unbind insert "left"
+drill-unbind insert "right"
+drill-unbind insert "up"
+drill-unbind insert "down"
+unbind "left"
+unbind "right"
+unbind "up"
+unbind "down"
+#keybindings
+bind "ctrl-x ctrl-c" quit
+bind "ctrl-x ctrl-s" write-buffer
+drill-bind insert "ctrl-a" cursor-line-begin
+drill-bind insert "ctrl-e" cursor-line-end
+drill-bind insert "meta-;" comment-toggle
+drill-bind normal "meta-;" comment-toggle
+bind "ctrl-c ctrl-b" find-in-buffer
+bind "meta-n" find-next-in-buffer
+bind "meta-p" find-prev-in-buffer
+bind "bsp" multi "yank-selection 1" delete-back
+bind "del" multi "yank-selection 1" delete-forward
+drill-bind insert "ctrl-d" multi "yank-selection 1" delete-forward
+bind "ctrl-z" multi cursor-line-end "insert 13"
+bind "ctrl-q" cursor-prev-word
+bind "ctrl-w" cursor-next-word
+drill-bind normal "g d" multi jump-stack-push ctags-jump-to-definition
+bind "ctrl-o" jump-stack-pop
+drill-bind  normal  "M M" man-word
+bind "meta-bsp" multi select-lines "yank-selection 1" delete-forward
+bind "meta-1" command-prompt "cursor-line "
+bind "meta-h" frame-prev
+bind "meta-l" frame-next
+bind "meta-3" frame-vsplit
+bind "meta-2" frame-hsplit
+bind "meta-0" frame-delete
+bind "meta-." buffer-next
+bind "meta-," buffer-prev
+bind "fn-1" 'go-menu'
+bind 'fn-2' 'find-file'
+
+drill-bind normal i multi 'cursor-style steady-bar' 'drill-enter-insert'
+drill-bind normal o multi 'cursor-style steady-bar' 'select-off' 'cursor-line-end' 'insert 13' 'drill-enter-insert'
+drill-bind normal O multi 'cursor-style steady-bar' 'select-off' 'cursor-up' 'cursor-line-end' 'insert 13' 'drill-enter-insert'
+drill-bind insert esc multi 'cursor-style steady-block' 'select-off' 'drill-exit-insert'
+drill-bind normal "g e" 'cursor-buffer-end'
+drill-bind normal "g g" 'cursor-buffer-begin'
+drill-bind normal "g l" 'cursor-line-end'
+drill-bind normal "g h" 'cursor-line-begin'
+drill-bind normal Y 'y2s'
+drill-bind insert 'ctrl-f' 'cursor-right'
+drill-bind insert 'ctrl-b' 'cursor-left'
+bind 'ctrl-y' 'pastebin'
+
+drill-bind normal 'ctrl-f' 'cursor-page-down'
+drill-bind normal 'ctrl-b' 'cursor-page-up'
+bind 'ctrl-y' 'command-prompt'
