@@ -30,6 +30,7 @@ userconf :
 	@test -f $(CONF)/yedrc || cp  ./userconf/yedrc $(CONF)/yedrc
 	@test -f $(CONF)/mpy_tally || cp  ./userconf/mpy_tally $(CONF)/mpy_tally
 	@test -f $(CONF)/init.c || cp ./userconf/init.c $(CONF)/init.c
+	@test -f ./userconf/build_init.sh || cp ./mpyconf/build_init.sh ./userconf/build_init.sh
 	@test -f $(CONF)/build_init.sh || cp ./userconf/build_init.sh $(CONF)/build_init.sh
 
 update :
