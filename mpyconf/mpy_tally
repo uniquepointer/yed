@@ -28,7 +28,6 @@ status_bar_clock
 style_pack
 style_picker
 style_use_term_bg
-yedrc
 lang/conf
 lang/cpp
 lang/c
