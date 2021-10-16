@@ -37,6 +37,7 @@ lang/go
 lang/jgraph
 lang/latex
 lang/make
+lang/nix
 lang/python
 lang/sh
 lang/yedrc
@@ -48,12 +49,16 @@ lang/syntax/glsl
 lang/syntax/go
 lang/syntax/jgraph
 lang/syntax/latex
+lang/syntax/nix
 lang/syntax/python
 lang/syntax/sh
 lang/syntax/yedrc
 lang/syntax/zig
 lang/tools/gofmt
 lang/tools/latex
+lang/tools/nixfmt
 styles/crunchy_leaves
 styles/midnight
-a
+alternate
+sysclip
+formatter
