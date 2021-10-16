@@ -65,4 +65,4 @@ git subtree pull https://github.com/uniquepointer/yed-sysclip --prefix mpy/syscl
 git subtree pull https://github.com/uniquepointer/yed-lang-tools-nixfmt --prefix mpy/lang/tools/nixfmt main --squash
 git subtree pull https://github.com/uniquepointer/yed-lang-syntax-nix --prefix mpy/lang/syntax/nix main --squash
 git subtree pull https://github.com/uniquepointer/yed-lang-nix --prefix mpy/lang/nix main --squash
-git subtree pull htpps://github.com/mickidymick/formatter --prefix mpy/formatter main --squash
+git subtree pull https://github.com/mickidymick/formatter --prefix mpy/formatter main --squash
