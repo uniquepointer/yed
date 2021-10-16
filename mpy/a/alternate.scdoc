@@ -1,8 +1,8 @@
-YED-A(7) "YED Plugin Manuals"
+YED-ALTERNATE(7) "YED Plugin Manuals"
 
 # NAME
 
-a - Allows switching between source file and header file c --> h
+Alternate - Allows switching between source file and header file c --> h
 
 # CONFIGURATION
 None for now.
