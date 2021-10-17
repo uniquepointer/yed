@@ -1,36 +1,109 @@
 #My config
+
 #variables
 set tab-width 4
-#set ctags-flags "-R --exclude=*ccls* *"
+set enable-search-cursor-move "no"
+set find-file-prg 'rg --no-ignore-vcs --files --hidden -g "!.git"'
+set use-boyer-moore 'yes'
+set fill-string '*'
+#ctabs
+set ctags-flags "-R --exclude=*ccls* *"
 set ctags-auto-show-function-hint "yes"
 set ctags-enable-extra-highlighting "yes"
 set ctags-compl "yes"
 set ctags-additional-paths "~/.local/include"
 set ctags-regen-on-write "yes"
+#completer
 set completer-sources "word tags"
 set completer-auto "yes
-set cursorline "yes"
 set command-prompt-string "cool-factoid>"
 set completer-auto "yes"
-set enable-search-cursor-move "no"
-set sys-clip 'xsel'
+#visual
 set truecolor "yes"
-set find-file-prg 'rg --no-ignore-vcs --files --hidden -g "!.git"'
+set cursor-line "yes"
+#formatting
 set gofmt-auto "yes"
 set nixfmt-auto "yes"
 set clangfmt-auto "yes"
+#paren
 set auto-paren-skip "yes"
 set auto-dquote-skip "yes"
 set auto-quote-skip "yes"
+#pastebin
 set pastebin-fav "paste-rs"
+#sysclip
+set sys-clip 'xsel'
+#git
 set git-variables-branch-icon " "
+#line
 set status-line-left "%[&code-comment.fg swap &search.fg]  %t%[&code-comment.fg swap &search.fg]  %(drill-mode)  %[&code-comment.fg swap &search.fg] %b%[&code-comment.fg swap &search.fg]  %l:%c  %p%%%[&code-comment.fg]🭬"
 set status-line-center "%[&code-comment.fg]%[&code-comment.fg swap &search.fg] %(git-variables-branch) %[&code-comment.fg]"
 set status-line-right "%[&code-comment.fg]🭮%[&code-comment.fg swap &search.fg]%T"
 
+#recurse over mpy_tally
 load-tally
 
+#set style
 style-term-bg crunchy_leaves
+
+#keybindings
+bind "ctrl-x ctrl-c" quit
+bind "ctrl-x ctrl-s" write-buffer
+bind "ctrl-c ctrl-b" find-in-buffer
+bind "bsp" multi "yank-selection 1" delete-back
+bind "del" multi "yank-selection 1" delete-forward
+bind "ctrl-z" multi cursor-line-end "insert 13"
+bind "meta-bsp" multi select-lines "yank-selection 1" delete-forward
+bind "meta-1" command-prompt "cursor-line "
+#frame
+bind "meta-h" frame-prev
+bind "meta-l" frame-next
+bind "meta-3" frame-vsplit
+bind "meta-2" frame-hsplit
+bind "meta-0" frame-delete
+#buffer
+bind "meta-." buffer-next
+bind "meta-," buffer-prev
+#utility
+bind "fn-1" 'go-menu'
+bind 'fn-2' 'find-file'
+bind 'ctrl-r' 'command-prompt'
+bind "meta-;" comment-toggle
+bind 'ctrl-y' 'pastebin'
+
+#change cursor on mode
+drill-bind normal i multi 'cursor-style steady-bar' 'drill-enter-insert'
+drill-bind normal o multi 'cursor-style steady-bar' 'select-off' 'cursor-line-end' 'insert 13' 'drill-enter-insert'
+drill-bind normal O multi 'cursor-style steady-bar' 'select-off' 'cursor-up' 'cursor-line-end' 'insert 13' 'drill-enter-insert'
+drill-bind insert esc multi 'cursor-style steady-block' 'select-off' 'drill-exit-insert'
+
+#normal shit breh
+drill-bind normal "<" unindent
+drill-bind normal ">" indent
+drill-bind normal  "M M" man-word
+drill-bind normal Y 'y2s'
+
+#insert bs
+drill-bind insert "ctrl-d" multi "yank-selection 1" delete-forward
+drill-bind insert "ctrl-a" cursor-line-begin
+drill-bind insert "ctrl-e" cursor-line-end
+
+#Kakoune
+bind "ctrl-o" jump-stack-pop
+drill-bind normal "g d" multi jump-stack-push ctags-jump-to-definition
+drill-bind normal "g e" 'cursor-buffer-end'
+drill-bind normal "g g" 'cursor-buffer-begin'
+drill-bind normal "g l" 'cursor-line-end'
+drill-bind normal "g h" 'cursor-line-begin'
+drill-bind normal "meta-n" 'find-prev-in-buffer'
+
+#cursor
+drill-bind insert 'ctrl-f' 'cursor-right'
+drill-bind insert 'ctrl-b' 'cursor-left'
+drill-bind insert "ctrl-q" cursor-prev-word
+drill-bind insert "ctrl-w" cursor-next-word
+drill-bind normal 'ctrl-f' 'cursor-page-down'
+drill-bind normal 'ctrl-b' 'cursor-page-up'
 
 #unbind
 drill-unbind normal "left"
@@ -45,50 +118,3 @@ unbind "left"
 unbind "right"
 unbind "up"
 unbind "down"
-#keybindings
-bind "ctrl-x ctrl-c" quit
-bind "ctrl-x ctrl-s" write-buffer
-drill-bind insert "ctrl-a" cursor-line-begin
-drill-bind insert "ctrl-e" cursor-line-end
-drill-bind insert "meta-;" comment-toggle
-drill-bind normal "meta-;" comment-toggle
-bind "ctrl-c ctrl-b" find-in-buffer
-bind "meta-n" find-next-in-buffer
-bind "meta-p" find-prev-in-buffer
-bind "bsp" multi "yank-selection 1" delete-back
-bind "del" multi "yank-selection 1" delete-forward
-drill-bind insert "ctrl-d" multi "yank-selection 1" delete-forward
-bind "ctrl-z" multi cursor-line-end "insert 13"
-bind "ctrl-q" cursor-prev-word
-bind "ctrl-w" cursor-next-word
-drill-bind normal "g d" multi jump-stack-push ctags-jump-to-definition
-bind "ctrl-o" jump-stack-pop
-drill-bind  normal  "M M" man-word
-bind "meta-bsp" multi select-lines "yank-selection 1" delete-forward
-bind "meta-1" command-prompt "cursor-line "
-bind "meta-h" frame-prev
-bind "meta-l" frame-next
-bind "meta-3" frame-vsplit
-bind "meta-2" frame-hsplit
-bind "meta-0" frame-delete
-bind "meta-." buffer-next
-bind "meta-," buffer-prev
-bind "fn-1" 'go-menu'
-bind 'fn-2' 'find-file'
-
-drill-bind normal i multi 'cursor-style steady-bar' 'drill-enter-insert'
-drill-bind normal o multi 'cursor-style steady-bar' 'select-off' 'cursor-line-end' 'insert 13' 'drill-enter-insert'
-drill-bind normal O multi 'cursor-style steady-bar' 'select-off' 'cursor-up' 'cursor-line-end' 'insert 13' 'drill-enter-insert'
-drill-bind insert esc multi 'cursor-style steady-block' 'select-off' 'drill-exit-insert'
-drill-bind normal "g e" 'cursor-buffer-end'
-drill-bind normal "g g" 'cursor-buffer-begin'
-drill-bind normal "g l" 'cursor-line-end'
-drill-bind normal "g h" 'cursor-line-begin'
-drill-bind normal Y 'y2s'
-drill-bind insert 'ctrl-f' 'cursor-right'
-drill-bind insert 'ctrl-b' 'cursor-left'
-bind 'ctrl-y' 'pastebin'
-
-drill-bind normal 'ctrl-f' 'cursor-page-down'
-drill-bind normal 'ctrl-b' 'cursor-page-up'
-bind 'ctrl-y' 'command-prompt'
