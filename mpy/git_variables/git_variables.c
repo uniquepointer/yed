@@ -11,6 +11,8 @@ void git_variables_post_pump(yed_event *event);
 static unsigned long long last_update_time;
 
 int yed_plugin_boot(yed_plugin *self) {
+    char * output;
+    int output_len, status;
     yed_event_handler h;
 
     YED_PLUG_VERSION_CHECK();
@@ -28,6 +30,16 @@ int yed_plugin_boot(yed_plugin *self) {
     }
     if(yed_get_var("git-variables-branch-icon")==NULL){
         yed_set_var("git-variables-branch-icon","");
+    }
+
+    output = yed_run_subproc("basename `git rev-parse --show-toplevel`",&output_len,&status);
+    if(status == 0&&output!=NULL){
+        yed_set_var("git-variables-repo-name", output);
+    }else{
+        yed_set_var("git-variables-repo-name", "");
+    }
+    if(output!=NULL){
+        free(output);
     }
     return 0;
 }
