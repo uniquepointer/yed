@@ -66,4 +66,5 @@ git subtree pull https://github.com/uniquepointer/yed-lang-tools-nixfmt --prefix
 git subtree pull https://github.com/uniquepointer/yed-lang-syntax-nix --prefix mpy/lang/syntax/nix main --squash
 git subtree pull https://github.com/uniquepointer/yed-lang-nix --prefix mpy/lang/nix main --squash
 git subtree pull https://github.com/mickidymick/formatter --prefix mpy/formatter main --squash
-git subtree pull https://github.com/uniquepointer/yed-lang-tools-clangfmt --prefix mpy/lang/tools/clangfmt main --squash
+git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-tools-clangfmt --prefix mpy/lang/tools/clangfmt main --squash
+
