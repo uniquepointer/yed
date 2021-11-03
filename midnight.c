@@ -5,31 +5,31 @@
 #define base00             (ALT(RGB_32_hex(171831), 16))
 #define base00_but_lighter (ALT(RGB_32_hex(31324b), 235))
 
+#define WHITE              (ALT(RGB_32_hex(f7f7f7), 189))
+
 #define ORANGE             (ALT(RGB_32_hex(f79617), 208))
 
 #define YELLOW             (ALT(RGB_32_hex(ffc24b), 214))
 
 #define YELLOW2            (ALT(RGB_32_hex(ffcc00), 220))
 
-#define GREEN              (ALT(RGB_32_hex(b4ce5c), 119))
+#define GREEN              (ALT(RGB_32_hex(c3ff54), 119))
 
-#define CYAN               (ALT(RGB_32_hex(50eafa), 80))
+#define PREPROC               (ALT(RGB_32_hex(d4155e), 80))
+
+#define FLOW               (ALT(RGB_32_hex(b429ff), 37))
 
 #define BLUE               (ALT(RGB_32_hex(32b4ff), 33))
 
-#define RED                (ALT(RGB_32_hex(ff3c41), 160))
-
 #define CRIMSONRED         (ALT(RGB_32_hex(ff3c41), 160))
 
-#define TEAL               (ALT(RGB_32_hex(23d4ac), 37))
+#define KW                 (ALT(RGB_32_hex(6ed6ff), 160))
 
 #define PURPLE             (ALT(RGB_32_hex(7d52ff), 99))
 
 #define WEAKPURPLE         (ALT(RGB_32_hex(806aad), 98))
 
 #define BEAUTIFULBLUE      (ALT(RGB_32_hex(5ac8fa), 75))
-
-#define WHITE              (ALT(RGB_32_hex(e3e4fd), 189))
 
 #define base0A             (ALT(RGB_32_hex(fabd2f), 214))
 
@@ -87,7 +87,7 @@ PACKABLE_STYLE(midnight)
     s.selection.bg        = BLUESELEC;
 
     s.attention.flags     = attr_kind | ATTR_BOLD;
-    s.attention.fg        = RED;
+    s.attention.fg        = CRIMSONRED;
 
     s.associate.flags     = attr_kind | ATTR_BOLD;
     s.associate.bg        = DARK;
@@ -96,7 +96,7 @@ PACKABLE_STYLE(midnight)
 
     s.status_line.flags   = attr_kind | ATTR_BOLD;
     s.status_line.fg      = s.active.fg;
-    s.status_line.bg      = base00;
+    s.status_line.bg      = PURPLE;
 
     s.active_gutter       = s.active;
     s.inactive_gutter     = s.inactive;
@@ -105,12 +105,15 @@ PACKABLE_STYLE(midnight)
     s.code_comment.fg     = WEAKPURPLE;
 
     s.code_keyword.flags  = attr_kind | ATTR_BOLD;
-    s.code_keyword.fg     = TEAL;
+    s.code_keyword.fg     = ORANGE;
 
-    s.code_control_flow = s.code_typename = s.code_keyword;
+    s.code_control_flow.flags = attr_kind | ATTR_BOLD;
+    s.code_control_flow.fg    = KW;
+
+    s.code_typename.fg = PURPLE;
 
     s.code_preprocessor.flags             = attr_kind | ATTR_BOLD;
-    s.code_preprocessor.fg                = PURPLE;
+    s.code_preprocessor.fg                = PREPROC;
 
     s.code_fn_call.flags                  = attr_kind | ATTR_BOLD;
     s.code_fn_call.fg                     = YELLOW;
