@@ -60,7 +60,7 @@ git subtree pull --prefix mpy/lang/zig https://github.com/uniquepointer/yed-lang
 git subtree pull --prefix mpy/lang/syntax/zig https://github.com/uniquepointer/yed-lang-syntax-zig  main --squash;
 git subtree pull --prefix mpy/pastebin https://github.com/uniquepointer/yed-pastebin  main --squash;
 git subtree pull https://github.com/uniquepointer/yed-a --prefix mpy/a main --squash;
-git subtree pull https://github.com/kammerdienerb/yed-profile mpy/profile master --squash;
+git subtree pull https://github.com/kammerdienerb/yed-profile --prefix mpy/profile master --squash;
 git subtree pull https://github.com/uniquepointer/yed-sysclip --prefix mpy/sysclip main --squash;
 git subtree pull https://github.com/uniquepointer/yed-lang-tools-nixfmt --prefix mpy/lang/tools/nixfmt main --squash;
 git subtree pull https://github.com/uniquepointer/yed-lang-syntax-nix --prefix mpy/lang/syntax/nix main --squash;
