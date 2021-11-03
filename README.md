@@ -1,5 +1,7 @@
 # yed (Your Editor) AIO Edition
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/your-editor.svg)](https://repology.org/project/your-editor/versions)
+
 # TL;DR
 **Yed but with my super defaults.**
 I made this mostly for myself but if there is anything I can do to make it easier for others send me an email or open an issue on github.
