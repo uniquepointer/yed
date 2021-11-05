@@ -69,3 +69,4 @@ git subtree pull https://github.com/mickidymick/formatter --prefix mpy/formatter
 git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-tools-clangfmt --prefix mpy/lang/tools/clangfmt main --squash;
 git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-syntax-rv64asm --prefix mpy/lang/syntax/rv64asm master --squash;
 git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-rv64asm --prefix mpy/lang/rv64asm master --squash;
+git subtree pull https://github.com/mickidymick/convert/ --prefix mpy/convert main --squash;
