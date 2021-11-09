@@ -90,7 +90,7 @@ PACKABLE_STYLE(midnight)
     s.attention.fg        = CRIMSONRED;
 
     s.associate.flags     = attr_kind | ATTR_BOLD;
-    s.associate.bg        = DARK;
+    s.associate.bg        = CRIMSONRED;
 
     s.command_line        = s.active;
 
