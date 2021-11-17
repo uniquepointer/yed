@@ -71,3 +71,5 @@ git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-syntax-rv64asm --pre
 git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-rv64asm --prefix mpy/lang/rv64asm master --squash;
 git subtree pull https://github.com/mickidymick/convert/ --prefix mpy/convert main --squash;
 git subtree pull https://github.com/spatel38305/confirm-quit/ --prefix mpy/confirm-quit master --squash
+git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-lua --prefix mpy/lang/lua master --squash
+git subtree pull https://git.sr.ht/\~uniquepointer/yed-lang-syntax-lua --prefix mpy/lang/syntax/lua master --squash
