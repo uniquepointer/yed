@@ -3,6 +3,7 @@
 
 static yed_syntax syn;
 
+#define ARRAY_LOOP(a) for (__typeof((a)[0]) *it = (a); it < (a) + (sizeof(a) / sizeof((a)[0])); ++it)
 
 #define _CHECK(x, r)                                                      \
 do {                                                                      \
@@ -44,7 +45,7 @@ void eline(yed_event *event)  {
     if (!frame
     ||  !frame->buffer
     ||  frame->buffer->kind != BUFF_KIND_FILE
-    ||  frame->buffer->ft != yed_get_ft("C")) {
+    ||  frame->buffer->ft != yed_get_ft("C++")) {
         return;
     }
 
@@ -62,6 +63,52 @@ int yed_plugin_boot(yed_plugin *self) {
     yed_event_handler buffdel;
     yed_event_handler buffmod;
     yed_event_handler line;
+
+    char              *kwds[] = {
+        "__asm__",  "asm", "alignas", "alignof", "and", "and_eq", "atomic_cancel", "atomic_commit", "atomic_noexcept", "auto",
+        "bitand", "bitor",
+        "const", "class", "compl", "concept ", "consteval ", "constexpr ", "constinit ", "const_cast",
+        "decltype ", "delete", "dynamic_cast",
+        "enum",     "extern", "explicit", "export",
+        "friend",
+        "inline",
+        "mutable",
+        "namespace", "new", "noexcept ", "not", "not_eq",
+        "operator", "or", "or_eq",
+        "private", "protected", "public",
+        "restrict", "reflexpr ", "register", "reinterpret_cast", "requires ",
+        "sizeof", "static", "struct",
+        "static_assert ", "static_cast", "synchronized ", "typedef",
+        "template", "thread_local ", "typedef", "typeid", "typename",
+        "union", "using",
+        "virtual", "volatile",
+        "xor", "xor_eq",
+    };
+    char              *control_flow[] = {
+        "break",
+        "case", "catch", "co_await", "co_return", "co_yield", "continue",
+        "default", "do",
+        "else",
+        "for",
+        "goto",
+        "if",
+        "return",
+        "switch",
+        "throw", "try",
+        "while",
+    };
+    char              *typenames[] = {
+        "bool",
+        "char", "char8_t", "char16_t", "char32_t",
+        "double",
+        "float",
+        "long",
+        "int",
+        "short", "size_t", "ssize_t",
+        "unsigned",
+        "void",
+        "wchar_t",
+    };
 
 
     YED_PLUG_VERSION_CHECK();
@@ -90,7 +137,8 @@ int yed_plugin_boot(yed_plugin *self) {
             RANGE("/\\*");
             ENDRANGE(  "\\*/");
             RANGE("//");
-            ENDRANGE(  "$");
+                ONELINE();
+            ENDRANGE("$");
             RANGE("^[[:space:]]*#[[:space:]]*if[[:space:]]+0"WB);
             ENDRANGE("^[[:space:]]*#[[:space:]]*(else|endif|elif|elifdef)"WB);
         APOP();
@@ -116,50 +164,16 @@ int yed_plugin_boot(yed_plugin *self) {
         APOP();
 
         APUSH("&code-keyword");
-            KWD("__asm__");
-            KWD("__inline__");
-            KWD("asm");
-            KWD("const");
-            KWD("enum");
-            KWD("extern");
-            KWD("inline");
-            KWD("restrict");
-            KWD("sizeof");
-            KWD("static");
-            KWD("struct");
-            KWD("typedef");
-            KWD("union");
-            KWD("volatile");
+            ARRAY_LOOP(kwds) KWD(*it);
         APOP();
 
         APUSH("&code-control-flow");
-            KWD("break");
-            KWD("case");
-            KWD("continue");
-            KWD("default");
-            KWD("do");
-            KWD("else");
-            KWD("for");
-            KWD("goto");
-            KWD("if");
-            KWD("return");
-            KWD("switch");
-            KWD("while");
+            ARRAY_LOOP(control_flow) KWD(*it);
             REGEXSUB("^[[:space:]]*([[:alpha:]_][[:alnum:]_]*):", 1);
         APOP();
 
         APUSH("&code-typename");
-            KWD("bool");
-            KWD("char");
-            KWD("double");
-            KWD("float");
-            KWD("long");
-            KWD("int");
-            KWD("short");
-            KWD("size_t");
-            KWD("ssize_t");
-            KWD("unsigned");
-            KWD("void");
+            ARRAY_LOOP(typenames) KWD(*it);
         APOP();
 
         APUSH("&code-preprocessor");
@@ -191,6 +205,10 @@ int yed_plugin_boot(yed_plugin *self) {
             KWD("stdin");
             KWD("stdout");
             KWD("stderr");
+            KWD("true");
+            KWD("false");
+            KWD("nullptr");
+            KWD("this");
         APOP();
 
         APUSH("&code-field");
