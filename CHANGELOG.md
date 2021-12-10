@@ -1,6 +1,14 @@
 # Changelog
 
-## 1300 - 2021-12-7
+## 1303 - 2021-12-8
+### Changed
+    - the `plugins` directory is now a `subtree`. This makes installing simpler and allows you to just grab a `tar` of a release without needing `git`.
+
+## 1302 - 2021-12-7
+### Changed
+    - removed use of `codesign` in the install script for Darwin targets. This isn't needed any more and will help us package `yed`.
+
+## 1301 - 2021-12-7
 ### Fixed
     - Fixed logic in yed_cell_is_in_frame()
 

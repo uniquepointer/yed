@@ -101,8 +101,6 @@ fi
 
 if [ $(uname) = "Darwin" ]; then
     install_name_tool -id $(apath "${lib_dir}/libyed.so") "${lib_dir}/libyed.so.new"
-    codesign -s - -f ${lib_dir}/libyed.so.new >/dev/null 2>&1 || exit 1
-    echo "    performed codesign fixup"
 fi
 
 mv ${lib_dir}/libyed.so.new ${lib_dir}/libyed.so || exit 1
@@ -126,11 +124,6 @@ if [ "${strip}x" = "yesx" ]; then
     strip ${bin_dir}/yed.new
 fi
 
-if [ $(uname) = "Darwin" ]; then
-    codesign -s - -f ${bin_dir}/yed.new >/dev/null 2>&1 || exit 1
-    echo "    performed codesign fixup"
-fi
-
 mv ${bin_dir}/yed.new ${bin_dir}/yed || exit 1
 if [ $(uname) = "Darwin" ] && [ -d "${bin_dir}/yed.new.dSYM" ]; then
     rm -rf "${bin_dir}/yed.dSYM" || exit 1
@@ -143,26 +136,6 @@ echo "Creating default configuration.."
 cp -r share/* ${share_dir}/yed
 ${CC} ${share_dir}/yed/start/init.c -o ${share_dir}/yed/start/init.so $(${bin_dir}/yed --print-cflags) $(${bin_dir}/yed --print-ldflags) || exit 1
 echo "Installed share items:             ${share_dir}/yed"
-
-MAJOR_VERSION=$(${bin_dir}/yed --major-version)
-
-if ! [ -d plugins ]; then
-    echo "Grabbing plugins.."
-    git clone https://github.com/your-editor/yed-plugins plugins
-    cd plugins
-    git checkout "v${MAJOR_VERSION}"
-    cd ${DIR}
-else
-    if [ -d plugins/.git ]; then
-        echo "Updating plugins.."
-        cd plugins
-        git pull
-        git checkout "v${MAJOR_VERSION}"
-        cd ${DIR}
-    else
-        echo "Found plugins."
-    fi
-fi
 
 echo "Compiling plugins.."
 pids=()
