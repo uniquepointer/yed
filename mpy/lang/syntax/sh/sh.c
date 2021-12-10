@@ -123,7 +123,7 @@ int yed_plugin_boot(yed_plugin *self) {
 
     SYN();
         APUSH("");
-            REGEX("\\${?#");
+            REGEX("\\$\\{?#");
             RANGE("\""); SKIP("\\\\\""); ENDRANGE("\"");
             RANGE("'");  SKIP("\\\\'");  ENDRANGE("'");
         APOP();
@@ -246,6 +246,11 @@ dont_pop:;
                     }
                     break;
                 case '$':
+                    if (cxt && cxt->close == '\'') {
+                        yed_combine_attrs(array_item(line_attrs, col - 1), cxt->attrs);
+                        goto next;
+                    }
+
                     if (col < line->visual_width) {
                         if (yed_line_col_to_glyph(line, col + 1)->c == '(') {
                             if (col < line->visual_width - 1
